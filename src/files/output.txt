@@ -1,0 +1,2667 @@
+14:51:57.983 [ActorSystem-akka.actor.default-dispatcher-5] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+14:51:58.543 [ActorSystem-akka.actor.default-dispatcher-5] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+The value is deleted
+The value is added
+The value is deleted
+The key does exist in our dataset with a value = value313
+The value is deleted
+The key does exist in our dataset with a value = value313
+The key does exist in our dataset with a value = value288
+The key does exist in our dataset with a value = value243
+The key does exist in our dataset with a value = value24
+The key does exist in our dataset with a value = value486
+The key does exist in our dataset with a value = value294
+The value is deleted
+The value is added
+The value is deleted
+The value is added
+The value is deleted
+The value is deleted
+The value is added
+The value is deleted
+The value is added
+The key does exist in our dataset with a value = value294
+The value is added
+The value is added
+The value is deleted
+The value is added
+The key does exist in our dataset with a value = value294
+The key does exist in our dataset with a value = value294
+The key does exist in our dataset with a value = value294
+The key does exist in our dataset with a value = value428
+The value is added
+The key does exist in our dataset with a value = value110
+The key does exist in our dataset with a value = value300
+The key does exist in our dataset with a value = value300
+The value is deleted
+The value is added
+The value is added
+The value is added
+The value is deleted
+The value is deleted
+The value is added
+The value is deleted
+The value is added
+The value is deleted
+The value is added
+The value is added
+The key does exist in our dataset with a value = value300
+The key does exist in our dataset with a value = value300
+The value is added
+The value is deleted
+The value is added
+The value is added
+The value is added
+The value is deleted
+The key does exist in our dataset with a value = value300
+The value is deleted
+The value is added
+The value is deleted
+The key does exist in our dataset with a value = value300
+The value is deleted
+The value is added
+The key does exist in our dataset with a value = value300
+The key does exist in our dataset with a value = value300
+The value is deleted
+The key  does not exist
+The key does exist in our dataset with a value = value2
+The value is deleted
+The key does exist in our dataset with a value = value2
+The value is deleted
+The value is deleted
+The value is added
+The value is deleted
+The value is added
+The value is added
+The value is deleted
+The value is added
+The value is deleted
+The value is added
+The key does exist in our dataset with a value = value449
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value was deleted
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value was deleted
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+The value is added
+The value is added
+The value is added
+The value is added
+The value was deleted
+The value was deleted
+The value is added
+The value was deleted
+The value is added
+The value was deleted
+The value was deleted
+The value is added
+The value was deleted
+The value is added
+The value is deleted
+The key  does not exist
+The value is added
+
+The value is deleted
+The value was deleted
+The value is deleted
+The value was deleted
+The value is added
+The value stored in our cashe before your request are :
+
+The value is added
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+The value is added
+
+The value was deleted
+The value was deleted
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+The value is deleted
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value is deleted
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value is deleted
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value is deleted
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value is added
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value is added
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value is added
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+The value was deleted
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value is added
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+The value was deleted
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value is added
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+The value was deleted
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value is deleted
+The value stored in our cashe before your request are :
+The key does exist in our dataset with a value = value204
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value stored in our cashe before your request are :
+
+The value is deleted
+The value was deleted
+The value does exist
+The value does exist
+The key : key36 is deleted
+The key : key312 is deleted
+the pair key501 and value501 are stored
+The value is added
+The value does exist
+The value is added
+The value does exist
+the pair key502 and value502 are stored
+the pair key503 and value503 are stored
+the pair key504 and value504 are stored
+The value does exist
+The value does exist
+The value does exist
+The key : key342 is deleted
+The key : key342 is deleted
+The value does exist
+the pair key505 and value505 are stored
+The key : key24 is deleted
+the pair key506 and value506 are stored
+The key : key324 is deleted
+The value does exist
+The key : key39 is deleted
+the pair key507 and value507 are stored
+The key : key501 is deleted
+the pair key508 and value508 are stored
+The value does exist
+The value does exist
+The key : key47 is deleted
+The key : key461 is deleted
+the pair key509 and value509 are stored
+The value does exist
+the pair key510 and value510 are stored
+the pair key511 and value511 are stored
+The key : key340 is deleted
+The key : key38 is deleted
+The value does exist
+The value does exist
+The value does exist
+the pair key512 and value512 are stored
+The key : key431 is deleted
+The value does exist
+The key : key352 is deleted
+The key : key385 is deleted
+The key : key442 is deleted
+the pair key513 and value513 are stored
+The value is deleted
+The key does exist in our dataset with a value = value406
+The value was deleted
+The key : key201 is deleted
+The value is added
+The key does exist in our dataset with a value = value406
+The key does exist in our dataset with a value = value406
+The value is added
+The value is added
+the pair key514 and value514 are stored
+The value is added
+The value is added
+the pair key515 and value515 are stored
+The value is deleted
+The key does exist in our dataset with a value = value406
+The value is added
+The value is added
+the pair key516 and value516 are stored
+The value is deleted
+The value was deleted
+The key : key41 is deleted
+The value is added
+The value is deleted
+the pair key517 and value517 are stored
+The value was deleted
+The value was deleted
+The key : key136 is deleted
+The value is added
+The key : key253 is deleted
+the pair key518 and value518 are stored
+The value is deleted
+The key does exist in our dataset with a value = value118
+The value is added
+The value is added
+the pair key519 and value519 are stored
+The value was deleted
+The key is not stored to be deleted.
+The value was deleted
+The key : key376 is deleted
+The key : key69 is deleted
+The value is added
+The value is deleted
+the pair key520 and value520 are stored
+The value was deleted
+The value is added
+The value does exist
+The value is deleted
+The value was deleted
+The key : key513 is deleted
+The value does exist
+The key : key188 is deleted
+The value is added
+The value is added
+The value is deleted
+The value is added
+The value does exist
+The value is deleted
+the pair key521 and value521 are stored
+the pair key522 and value522 are stored
+The value was deleted
+The value is deleted
+The key does exist in our dataset with a value = value118
+The value does exist
+The key : key395 is deleted
+The value is added
+The value is added
+the pair key523 and value523 are stored
+The value is added
+The value is added
+The key does exist in our dataset with a value = value128
+the pair key524 and value524 are stored
+The value is deleted
+The value is added
+the pair key525 and value525 are stored
+The value is added
+The key does exist in our dataset with a value = value346
+The value is added
+The value does exist
+The value does exist
+The value does exist
+The value does exist
+the pair key526 and value526 are stored
+The value is deleted
+The value is deleted
+The value was deleted
+The key : key416 is deleted
+The value is added
+The value was deleted
+The key : key425 is deleted
+The key  does not exist
+The value is added
+The value does exist
+the pair key527 and value527 are stored
+The value is added
+The value was deleted
+The value is added
+The key  does not exist
+The key does exist in our dataset with a value = value529
+The key : key22 is deleted
+The value does exist
+The value is added
+The value is added
+the pair key528 and value528 are stored
+The key does exist in our dataset with a value = value526
+The value was deleted
+The value does exist
+The key : key446 is deleted
+The value is deleted
+The value is added
+the pair key529 and value529 are stored
+The value is deleted
+The value was deleted
+The value is deleted
+The key does exist in our dataset with a value = value469
+The key does exist in our dataset with a value = value469
+The key does exist in our dataset with a value = value433
+The key does exist in our dataset with a value = value474
+The key : key119 is deleted
+The value was deleted
+The key is not stored to be deleted.
+The value does exist
+The key : key61 is deleted
+The value is added
+The value is deleted
+The key does exist in our dataset with a value = value474
+The key does exist in our dataset with a value = value474
+The value does exist
+The key does exist in our dataset with a value = value474
+The key does exist in our dataset with a value = value45
+The key does exist in our dataset with a value = value45
+the pair key530 and value530 are stored
+The value does exist
+The value is added
+The value is added
+the pair key531 and value531 are stored
+The value is added
+The value was deleted
+The key : key331 is deleted
+The value is added
+The value is added
+the pair key532 and value532 are stored
+The value is added
+The value is added
+the pair key533 and value533 are stored
+The value is deleted
+The value was deleted
+The value is deleted
+The value was deleted
+The key : key470 is deleted
+The key : key229 is deleted
+The value is added
+The key does exist in our dataset with a value = value508
+The value was deleted
+The key : key222 is deleted
+The value does exist
+The value does exist
+The value is deleted
+The key does exist in our dataset with a value = value508
+The value does exist
+The value does exist
+The value does exist
+The value was deleted
+The value is deleted
+The key does exist in our dataset with a value = value136
+The key : key169 is deleted
+The value is deleted
+The value was deleted
+The key : key473 is deleted
+The value does exist
+The value is added
+The value is added
+The value is added
+the pair key534 and value534 are stored
+The value was deleted
+The value is deleted
+The key : key327 is deleted
+The value is deleted
+The value was deleted
+The value does exist
+The key : key46 is deleted
+The value is deleted
+The value is added
+the pair key535 and value535 are stored
+The key is not stored to be deleted.
+The value was deleted
+The key : key138 is deleted
+The value is deleted
+The key does exist in our dataset with a value = value136
+The key does exist in our dataset with a value = value136
+The value is added
+The value is deleted
+the pair key536 and value536 are stored
+The value does exist
+The value is added
+The value is added
+The key does exist in our dataset with a value = value136
+the pair key537 and value537 are stored
+The value does exist
+The value does exist
+The value does not exist
+The value is added
+The key does exist in our dataset with a value = value136
+The value was deleted
+The key : key88 is deleted
+The value is added
+The key does exist in our dataset with a value = value136
+The value is added
+the pair key538 and value538 are stored
+The value is deleted
+The value is added
+the pair key539 and value539 are stored
+The value is deleted
+The value is added
+The value was deleted
+the pair key540 and value540 are stored
+The key : key115 is deleted
+The value was deleted
+The key : key157 is deleted
+The value is added
+The value is added
+the pair key541 and value541 are stored
+The value is deleted
+The value was deleted
+The value does not exist
+The key : key415 is deleted
+The value is added
+The value is added
+The value does exist
+The value does not exist
+the pair key542 and value542 are stored
+The value does exist
+The value does exist
+The value is added
+The value is added
+The value is added
+the pair key543 and value543 are stored
+The value is added
+The value does exist
+the pair key544 and value544 are stored
+The value is deleted
+The value was deleted
+The key : key509 is deleted
+The value is added
+The key is not stored to be deleted.
+the pair key545 and value545 are stored
+The value is added
+the pair key546 and value546 are stored
+The value is deleted
+The key does exist in our dataset with a value = value136
+The value was deleted
+The value does exist
+The value is added
+The value is added
+The value is added
+The value is added
+The key : key478 is deleted
+The value does exist
+The value does exist
+the pair key547 and value547 are stored
+The value does exist
+The value is added
+the pair key548 and value548 are stored
+The value does exist
+The key does exist in our dataset with a value = value136
+The key does exist in our dataset with a value = value63
+The value is deleted
+The value is added
+the pair key549 and value549 are stored
+The value is deleted
+The value was deleted
+The key : key275 is deleted
+The value is added
+The value is added
+the pair key550 and value550 are stored
+The value is deleted
+The value was deleted
+The key does exist in our dataset with a value = value63
+The key does exist in our dataset with a value = value63
+The key does exist in our dataset with a value = value8
+The key does exist in our dataset with a value = value542
+The value is added
+The value does exist
+The value does exist
+The value does exist
+The key : key276 is deleted
+The value was deleted
+The value does exist
+The key : key389 is deleted
+The value is added
+The value does exist
+The value does exist
+The value does exist
+The value does exist
+The value is deleted
+The value is added
+the pair key551 and value551 are stored
+The value is deleted
+The key does exist in our dataset with a value = value542
+The value was deleted
+The value is added
+The value does exist
+The key : key189 is deleted
+The value was deleted
+The value is deleted
+The key does exist in our dataset with a value = value542
+The key : key299 is deleted
+The value is added
+the pair key552 and value552 are stored
+The value was deleted
+The value is deleted
+The key : key277 is deleted
+The value does exist
+The value was deleted
+The value does exist
+The value does exist
+The value does exist
+The value is deleted
+The key does exist in our dataset with a value = value542
+The key : key272 is deleted
+The value was deleted
+The value was deleted
+The key : key490 is deleted
+The key : key68 is deleted
+The value is added
+The value is deleted
+The value is added
+The key does exist in our dataset with a value = value542
+The key does exist in our dataset with a value = value342
+The value is added
+The key does exist in our dataset with a value = value520
+The value is added
+The value is added
+the pair key553 and value553 are stored
+The value was deleted
+The value is deleted
+The key : key180 is deleted
+The key does exist in our dataset with a value = value155
+The value was deleted
+The key : key452 is deleted
+The key is not stored to be deleted.
+The value was deleted
+The value is deleted
+The key : key171 is deleted
+The key is not stored to be deleted.
+The value was deleted
+The key : key390 is deleted
+The key is not stored to be deleted.
+The value is added
+the pair key554 and value554 are stored
+The value does exist
+The value is deleted
+The value is added
+the pair key555 and value555 are stored
+The value is added
+The key does exist in our dataset with a value = value438
+The value was deleted
+The value is deleted
+The value does exist
+The key : key24 is deleted
+The value was deleted
+The value is added
+The key does exist in our dataset with a value = value438
+The value does exist
+The key : key445 is deleted
+The value is added
+The value was deleted
+The key : key225 is deleted
+The key is not stored to be deleted.
+The value was deleted
+The value does exist
+The key : key536 is deleted
+The value is added
+The value is added
+the pair key556 and value556 are stored
+The value is added
+The key does exist in our dataset with a value = value500
+The key does exist in our dataset with a value = value500
+The value was deleted
+The value was deleted
+The key : key95 is deleted
+The key : key402 is deleted
+The value is added
+The value is deleted
+The key does exist in our dataset with a value = value500
+The value is deleted
+The key does exist in our dataset with a value = value548
+The value is added
+the pair key557 and value557 are stored
+The key is not stored to be deleted.
+The value was deleted
+The key : key545 is deleted
+The value is added
+The key does exist in our dataset with a value = value548
+The key does exist in our dataset with a value = value548
+The key does exist in our dataset with a value = value66
+The key does exist in our dataset with a value = value66
+The value is added
+The value is added
+The value does exist
+The value does not exist
+the pair key558 and value558 are stored
+The value is deleted
+The value was deleted
+The key : key159 is deleted
+The value is added
+The value is added
+The value is deleted
+The key does exist in our dataset with a value = value457
+the pair key559 and value559 are stored
+The value was deleted
+The value does not exist
+The key : key57 is deleted
+The value is added
+the pair key560 and value560 are stored
+The value does exist
+The value is added
+The value is added
+The value is added
+the pair key561 and value561 are stored
+The value was deleted
+The key : key101 is deleted
+The value is deleted
+The value was deleted
+The key is not stored to be deleted.
+The key : key407 is deleted
+The value is deleted
+The key does exist in our dataset with a value = value191
+The value is added
+the pair key562 and value562 are stored
+The value is added
+The key does exist in our dataset with a value = value191
+The value was deleted
+The value is added
+The key does exist in our dataset with a value = value191
+The key does exist in our dataset with a value = value550
+The key : key502 is deleted
+The value is added
+The value was deleted
+The key : key115 is deleted
+The value is added
+The value is added
+the pair key563 and value563 are stored
+The value is added
+The value does exist
+the pair key564 and value564 are stored
+The value was deleted
+The key : key466 is deleted
+The value is deleted
+The key does exist in our dataset with a value = value550
+The value is added
+the pair key565 and value565 are stored
+The value is deleted
+The value was deleted
+The value is added
+The value is added
+The value does exist
+The key : key240 is deleted
+The key is not stored to be deleted.
+The value was deleted
+The key : key41 is deleted
+The value does exist
+The value is added
+The key does exist in our dataset with a value = value537
+The value was deleted
+The value does exist
+The key : key318 is deleted
+The value is deleted
+The value is added
+the pair key566 and value566 are stored
+The value is added
+The value is deleted
+The value does exist
+the pair key567 and value567 are stored
+The value is added
+The value was deleted
+The key : key279 is deleted
+The value is deleted
+The key does exist in our dataset with a value = value476
+The value was deleted
+The key : key249 is deleted
+The value is deleted
+The value was deleted
+The key : key29 is deleted
+The value is deleted
+The value was deleted
+The value is added
+The value is added
+The key : key283 is deleted
+the pair key568 and value568 are stored
+The value is added
+The key does exist in our dataset with a value = value474
+The key does exist in our dataset with a value = value474
+The value is added
+The value is deleted
+the pair key569 and value569 are stored
+The value was deleted
+The value does exist
+The key : key368 is deleted
+The key is not stored to be deleted.
+The key does exist in our dataset with a value = value474
+The value is added
+The value is added
+The value is added
+The key does exist in our dataset with a value = value474
+The key does exist in our dataset with a value = value474
+The key does exist in our dataset with a value = value474
+The key does exist in our dataset with a value = value474
+the pair key570 and value570 are stored
+The value does exist
+The value does exist
+The value is deleted
+The value is added
+the pair key571 and value571 are stored
+The value is added
+the pair key572 and value572 are stored
+The value is deleted
+The value was deleted
+The key is not stored to be deleted.
+The value does exist
+The key : key568 is deleted
+The value is added
+The key does exist in our dataset with a value = value140
+The value is added
+the pair key573 and value573 are stored
+The key is not stored to be deleted.
+The value was deleted
+The value does exist
+The key : key542 is deleted
+The value is deleted
+The key does exist in our dataset with a value = value114
+The key does exist in our dataset with a value = value114
+The value was deleted
+The key : key39 is deleted
+The value is added
+The value was deleted
+The key : key434 is deleted
+The value is added
+The value is added
+The value is deleted
+the pair key574 and value574 are stored
+The value is added
+The value is added
+The key does exist in our dataset with a value = value114
+the pair key575 and value575 are stored
+The value is deleted
+The value is added
+the pair key576 and value576 are stored
+The value was deleted
+The value is added
+The key : key191 is deleted
+The value is deleted
+The value is added
+the pair key577 and value577 are stored
+The value is deleted
+The value was deleted
+The value is deleted
+The value was deleted
+The value does exist
+The key : key403 is deleted
+The key : key180 is deleted
+The value is added
+The key does exist in our dataset with a value = value114
+The key does exist in our dataset with a value = value17
+The value is added
+the pair key578 and value578 are stored
+The value is added
+The key does exist in our dataset with a value = value324
+The key does exist in our dataset with a value = value164
+The value was deleted
+The key : key63 is deleted
+The value is deleted
+The key does exist in our dataset with a value = value121
+The value was deleted
+The key  does not exist
+The key : key493 is deleted
+The value is added
+the pair key579 and value579 are stored
+The value is added
+The value is added
+the pair key580 and value580 are stored
+The key is not stored to be deleted.
+The value is deleted
+The value is added
+the pair key581 and value581 are stored
+The value is added
+The value is added
+The key  does not exist
+The value is deleted
+The key does exist in our dataset with a value = value422
+The value was deleted
+The value is added
+The key does exist in our dataset with a value = value375
+The key does exist in our dataset with a value = value375
+The value is added
+The value is deleted
+The key : key420 is deleted
+the pair key582 and value582 are stored
+The value was deleted
+The key : key214 is deleted
+The value is added
+The value was deleted
+The value is deleted
+The value does exist
+The key : key75 is deleted
+The value is added
+The value is added
+the pair key583 and value583 are stored
+The value is added
+The value is added
+the pair key584 and value584 are stored
+The value is deleted
+The value is added
+the pair key585 and value585 are stored
+The value is added
+The value is added
+The value does exist
+the pair key586 and value586 are stored
+The value is added
+The key does exist in our dataset with a value = value375
+The value is added
+the pair key587 and value587 are stored
+The value is deleted
+The key does exist in our dataset with a value = value375
+The value was deleted
+The value does exist
+The value is added
+The value does exist
+The key : key575 is deleted
+the pair key588 and value588 are stored
+The value is deleted
+The value was deleted
+The value is added
+The value does exist
+The key : key12 is deleted
+The value was deleted
+The key : key156 is deleted
+The value is added
+the pair key589 and value589 are stored
+The value is added
+The key does exist in our dataset with a value = value375
+The value is deleted
+The key does exist in our dataset with a value = value375
+The value is added
+The value is added
+the pair key590 and value590 are stored
+The value is added
+The value is added
+The value is added
+The value does exist
+The value does exist
+the pair key591 and value591 are stored
+The value does exist
+The value is added
+The value is added
+the pair key592 and value592 are stored
+the pair key593 and value593 are stored
+The value is deleted
+The value is added
+The value does exist
+the pair key594 and value594 are stored
+The value is added
+The value was deleted
+The key : key57 is deleted
+The value is added
+The value is deleted
+The value is deleted
+The value is added
+The value is deleted
+The key does exist in our dataset with a value = value589
+The value is added
+The value is deleted
+The value is added
+The value is deleted
+The value is deleted
+The value is added
+The value is added
+The value is added
+The key does exist in our dataset with a value = value589
+The value is deleted
+The key does exist in our dataset with a value = value589
+The value is added
+The key is not stored to be deleted.
+The key does exist in our dataset with a value = value589
+The value is deleted
+The value is deleted
+The value is deleted
+The key is not stored to be deleted.
+The value is deleted
+The value is added
+The key  does not exist
+The value is deleted
+The value is deleted
+The key  does not exist
+The value is added
+The value is added
+The value is added
+The value is added
+The value is added
+The key is not stored to be deleted.
+The value is added
+The value is added
+The value is deleted
+The key does exist in our dataset with a value = value399
+The value is added
+the pair key595 and value595 are stored
+The value is added
+The value is added
+the pair key596 and value596 are stored
+The value is added
+The key does exist in our dataset with a value = value150
+The value was deleted
+The key : key15 is deleted
+The value is added
+The key does exist in our dataset with a value = value526
+The key does exist in our dataset with a value = value526
+The value is added
+The key does exist in our dataset with a value = value203
+the pair key597 and value597 are stored
+The value is added
+The value is added
+the pair key598 and value598 are stored
+The value is added
+The value was deleted
+The key : key228 is deleted
+The value does not exist
+The value is added
+The value is added
+the pair key599 and value599 are stored
+The value is deleted
+The value was deleted
+The key : key442 is deleted
+The value is added
+The value is added
+the pair key600 and value600 are stored
+The value does exist
+The value is added
+The value is deleted
+the pair key601 and value601 are stored
+The value is added
+the pair key602 and value602 are stored
+The value does exist
+The value is added
+The value is added
+The value is deleted
+the pair key603 and value603 are stored
+The value was deleted
+The key : key114 is deleted
+The value does exist
+The value is deleted
+The key does exist in our dataset with a value = value292
+The value was deleted
+The key : key144 is deleted
+The value is added
+The key does exist in our dataset with a value = value311
+The key does exist in our dataset with a value = value311
+The value was deleted
+The key : key595 is deleted
+The value is added
+The value was deleted
+The value is deleted
+The key does exist in our dataset with a value = value311
+The key  does not exist
+The key  does not exist
+The key : key353 is deleted
+The value is added
+The value is added
+the pair key604 and value604 are stored
+The value does exist
+The value is added
+The value is deleted
+the pair key605 and value605 are stored
+The value was deleted
+The key : key101 is deleted
+The value is deleted
+The key does exist in our dataset with a value = value542
+The value is added
+the pair key606 and value606 are stored
+The value is added
+The value is added
+the pair key607 and value607 are stored
+The value does exist
+The value is added
+the pair key608 and value608 are stored
+The value is added
+The value is added
+The value is added
+The value is added
+The value is deleted
+the pair key609 and value609 are stored
+the pair key610 and value610 are stored
+The value is added
+The value is deleted
+the pair key611 and value611 are stored
+The value is deleted
+The key does exist in our dataset with a value = value542
+The key does exist in our dataset with a value = value422
+The key  does not exist
+The key does exist in our dataset with a value = value199
+The value is added
+The key is not stored to be deleted.
+The value is added
+the pair key612 and value612 are stored
+the pair key613 and value613 are stored
+The value is added
+The value does exist
+the pair key614 and value614 are stored
+The value is added
+The key  does not exist
+The key  does not exist
+The key does exist in our dataset with a value = value223
+The value is added
+the pair key615 and value615 are stored
+The value does exist
+The value does exist
+The value is added
+The value was deleted
+The value does not exist
+The key : key476 is deleted
+The value is added
+The value was deleted
+The key : key145 is deleted
+The value was deleted
+The value is deleted
+The key : key6 is deleted
+The value is added
+The value is added
+the pair key616 and value616 are stored
+The key is not stored to be deleted.
+The value is added
+The value does not exist
+the pair key617 and value617 are stored
+The value is added
+The key does exist in our dataset with a value = value223
+The key does exist in our dataset with a value = value223
+The key does exist in our dataset with a value = value345
+The value was deleted
+The key does exist in our dataset with a value = value652
+The key : key115 is deleted
+The value was deleted
+The value is deleted
+The key : key7 is deleted
+The value is added
+The value was deleted
+The value does exist
+The key : key307 is deleted
+The value is added
+The value was deleted
+The key : key358 is deleted
+The key is not stored to be deleted.
+The value was deleted
+The key : key185 is deleted
+The value is added
+The key does exist in our dataset with a value = value652
+The value was deleted
+The key : key444 is deleted
+The value is deleted
+The key does exist in our dataset with a value = value590
+The value is added
+the pair key618 and value618 are stored
+The value is added
+The value was deleted
+The value does exist
+The key : key344 is deleted
+The value is added
+The value was deleted
+The value does exist
+The key : key127 is deleted
+The value is added
+The key does exist in our dataset with a value = value590
+The key does exist in our dataset with a value = value543
+The value was deleted
+The key : key512 is deleted
+The value is added
+The value was deleted
+The value is added
+The key does exist in our dataset with a value = value564
+The key : key566 is deleted
+The value is added
+The value was deleted
+The key : key226 is deleted
+The value is added
+The value is deleted
+the pair key619 and value619 are stored
+The value is deleted
+The value is added
+the pair key620 and value620 are stored
+The value is added
+The value does not exist
+The value is deleted
+The key does exist in our dataset with a value = value634
+The value was deleted
+The key : key24 is deleted
+The value is added
+The value was deleted
+The key : key233 is deleted
+The value is added
+The value is added
+The key does exist in our dataset with a value = value412
+the pair key621 and value621 are stored
+The value does not exist
+The value is added
+The value was deleted
+The key : key238 is deleted
+The value is deleted
+The value is added
+the pair key622 and value622 are stored
+The value is deleted
+The value was deleted
+The value does exist
+The key : key435 is deleted
+The value is deleted
+The key does exist in our dataset with a value = value506
+The value was deleted
+The key : key508 is deleted
+The value is deleted
+The value is added
+the pair key623 and value623 are stored
+The value is added
+The value was deleted
+The value does exist
+The value does not exist
+The key : key434 is deleted
+The value is added
+The key does exist in our dataset with a value = value506
+The value is added
+The value is deleted
+the pair key624 and value624 are stored
+The value was deleted
+The key : key526 is deleted
+The value does exist
+The value is deleted
+The value does exist
+The value does exist
+The value is added
+The value is deleted
+The value does exist
+The value does exist
+the pair key625 and value625 are stored
+The value is added
+The value is deleted
+the pair key626 and value626 are stored
+The value does exist
+The value was deleted
+The value is added
+The value does exist
+The key : key539 is deleted
+The value was deleted
+The value is added
+The key does exist in our dataset with a value = value506
+The value does exist
+The value does exist
+The key : key453 is deleted
+The value is deleted
+The value was deleted
+The value does exist
+The key : key442 is deleted
+The value does exist
+The value is deleted
+The key does exist in our dataset with a value = value506
+The key does exist in our dataset with a value = value110
+The key does exist in our dataset with a value = value110
+The value is added
+the pair key627 and value627 are stored
+The value is deleted
+The value is added
+the pair key628 and value628 are stored
+The value does exist
+The key is not stored to be deleted.
+The key does exist in our dataset with a value = value324
+The value is added
+the pair key629 and value629 are stored
+The value was deleted
+The key : key112 is deleted
+The value does exist
+The value was deleted
+The key : key274 is deleted
+The value was deleted
+The key : key70 is deleted
+The value is added
+the pair key630 and value630 are stored
+The value was deleted
+The key : key113 is deleted
+The value does exist
+The value was deleted
+The key : key356 is deleted
+The value was deleted
+The key : key245 is deleted
+The value does exist
+The value does exist
+The value is added
+The value does exist
+the pair key631 and value631 are stored
+The value was deleted
+The key : key612 is deleted
+The value was deleted
+The key : key209 is deleted
+The value does exist
+The value does exist
+The value is added
+the pair key632 and value632 are stored
+The value is added
+the pair key633 and value633 are stored
+The value is added
+the pair key634 and value634 are stored
+The value was deleted
+The value does exist
+The value was deleted
+The value does exist
+The value does exist
+The key : key180 is deleted
+The key : key33 is deleted
+The value was deleted
+The key : key331 is deleted
+The value was deleted
+The key : key165 is deleted
+The value does exist
+The value is added
+the pair key635 and value635 are stored
+The value was deleted
+The key : key157 is deleted
+The value does exist
+The value does exist
+The value is added
+The value does exist
+the pair key636 and value636 are stored
+The value is added
+the pair key637 and value637 are stored
+The value was deleted
+The key : key206 is deleted
+The value is added
+The value does not exist
+the pair key638 and value638 are stored
+The value is added
+the pair key639 and value639 are stored
+The value was deleted
+The key : key238 is deleted
+The value was deleted
+The key : key134 is deleted
+The value was deleted
+The key : key502 is deleted
+The value was deleted
+The key : key512 is deleted
+The value does not exist
+The value was deleted
+The key : key449 is deleted
+The value was deleted
+The value does exist
+The value does not exist
+The key : key53 is deleted
+The value is added
+The value does not exist
+the pair key640 and value640 are stored
+The value is added
+The value does not exist
+the pair key641 and value641 are stored
+The value is added
+the pair key642 and value642 are stored
+The value was deleted
+The key : key330 is deleted
+The value does exist
+The value was deleted
+The key : key183 is deleted
+The value was deleted
+The value is added
+The key : key584 is deleted
+the pair key643 and value643 are stored
+The value does exist
+The value is added
+the pair key644 and value644 are stored
+The value was deleted
+The key : key270 is deleted
+The value is added
+the pair key645 and value645 are stored
+The value was deleted
+The key : key529 is deleted
+The value does exist
+The value is added
+the pair key646 and value646 are stored
+The value is added
+the pair key647 and value647 are stored
+The value is added
+The value does exist
+the pair key648 and value648 are stored
+The value was deleted
+The value does exist
+The value was deleted
+The value does exist
+The value is added
+The key : key116 is deleted
+The key : key149 is deleted
+The value is added
+The value was deleted
+The value was deleted
+the pair key649 and value649 are stored
+The value was deleted
+The value does exist
+The value does exist
+The value does exist
+the pair key650 and value650 are stored
+The key : key497 is deleted
+The key : key441 is deleted
+The key : key427 is deleted
+The value is added
+the pair key651 and value651 are stored
+The value is added
+The value does not exist
+the pair key652 and value652 are stored
+The value is added
+the pair key653 and value653 are stored
+The value is added
+the pair key654 and value654 are stored
+The value does exist
+The value is added
+the pair key655 and value655 are stored
+The value does exist
+The value is added
+The value does not exist
+The value does exist
+the pair key656 and value656 are stored
+The value was deleted
+The key : key591 is deleted
+The value is added
+the pair key657 and value657 are stored
+The value does exist
+The value is added
+the pair key658 and value658 are stored
+The value is added
+the pair key659 and value659 are stored
+The value was deleted
+The key : key304 is deleted
+The value is added
+The value was deleted
+The value was deleted
+the pair key660 and value660 are stored
+The key : key164 is deleted
+The key : key609 is deleted
+The value is added
+the pair key661 and value661 are stored
+The value was deleted
+The value does exist
+The key : key407 is deleted
+The value was deleted
+The key : key540 is deleted
+The value was deleted
+The value does exist
+The value does not exist
+The value does not exist
+The value was deleted
+The value was deleted
+The key : key331 is deleted
+The key : key601 is deleted
+The key : key335 is deleted
+The value is added
+the pair key662 and value662 are stored
+The value is added
+the pair key663 and value663 are stored
+The value was deleted
+The key : key248 is deleted
+The value does not exist
+The value is added
+the pair key664 and value664 are stored
+The value was deleted
+The key : key207 is deleted
+The value is added
+The value does not exist
+the pair key665 and value665 are stored
